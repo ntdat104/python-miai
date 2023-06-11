@@ -1,0 +1,1 @@
+DATA_CSV = 'src/pandas/assets/Simplize_VCB_PriceHistory_20230611.csv'
