@@ -92,10 +92,45 @@ SAMPLE_IMG = "src/open-cv/assets/sample.png"
 # cv2.destroyAllWindows()
 
 # ---------------
-image = cv2.imread(SAMPLE_IMG)
-cv2.imshow("Anh mau", image)
-cv2.waitKey()
-blur = cv2.GaussianBlur(image, ksize=(31,31), sigmaX=0)
-cv2.imshow("Anh blur", blur)
-cv2.waitKey()
+# image = cv2.imread(SAMPLE_IMG)
+# cv2.imshow("Anh mau", image)
+# cv2.waitKey()
+# blur = cv2.GaussianBlur(image, ksize=(31,31), sigmaX=0)
+# cv2.imshow("Anh blur", blur)
+# cv2.waitKey()
+# cv2.destroyAllWindows()
+
+# ----------------
+# camera_id = 0
+# video = cv2.VideoCapture(camera_id)
+
+# while True:
+#     ret, frame = video.read()
+#     if ret:
+#         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+#         cv2.imshow("Anh tu webcam", frame)
+#     if cv2.waitKey(1) == ord ('q'):
+#         break
+# video.release()
+# cv2.destroyAllWindows()
+
+# ---------------
+camera_id = 'src/open-cv/assets/sample.avi'
+video = cv2.VideoCapture(camera_id)
+rotate = 0
+
+while True:
+    ret, frame = video.read()
+    if ret:
+        if (rotate != 0):
+            frame = imutils.rotate(frame, rotate)
+        cv2.imshow("Anh tu webcam", frame)
+    key = cv2.waitKey(1)
+    if key == ord('q'):
+        break
+    elif key == ord('a'):
+        rotate = rotate + 90
+    elif key == ord('d'):
+        rotate = rotate - 90
+video.release()
 cv2.destroyAllWindows()
